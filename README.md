@@ -10,7 +10,7 @@ This came into being as a result of some charity work I was doing where a group 
 - A stepping stone to building a more user friendly tool if required, for all users
 
 ### Portfolio And Repository Goals
-- Their maybe additions that move away from the initial Python version to showcase my software writing skills in general
--- Whatever gets the job done
--- In the easiest way possible for all
--- That showcases my skills
+Their maybe additions that move away from the initial Python version to showcase my software writing skills in general.
+- Whatever gets the job done
+- In the easiest way possible for all
+- That showcases my skills
