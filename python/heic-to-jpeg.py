@@ -7,18 +7,28 @@ register_heif_opener()
 
 
 class HeicToJpeg:
-	# Set the working directory. Process all heic files in that directory.
+	# Set the working directory to the script location, if no CLI second argument supplied for directory.
+	# Process all heic files in that directory.
 	# @return	void
 	def __init__ (self):
 		self.workingDirectory = '.'
+		if (len(sys.argv) == 2):
+			self.workingDirectory = sys.argv[1]
+
 		self.sourceFormat = 'heic'
 		self.targetFormat = 'jpg'
+		self.processImages()
 
+
+	# Convert all heic files in the provided working directory
+	# @return	void
+	def processImages (self):
 		for file in os.listdir(self.workingDirectory):
 			# Filter for the desired format/filetype of images to convert.
 			if (file.endswith('.' + self.sourceFormat)):
 				self.name = re.sub('\\.[a-z|A-Z]+$', '', file)
 				self.processImage()
+
 
 
 	# Convert a heic file to a jpeg if not already done so.
@@ -49,8 +59,8 @@ class HeicToJpeg:
 
 
 	# Check the image exif meta data if possible, to assertain the orientation used by the photographer.
-	# @param	image	PIL.image
-	# @return			int			The orientation
+	# @param		PIL.image	image	The image to check
+	# @return	int					The image orientation
 	def checkOrientation (self, image):
 		if hasattr(image, 'getexif'):
 			# Attempt to assertain the key number for 'Orientation' in the meta data tags.
@@ -73,9 +83,9 @@ class HeicToJpeg:
 
 				
 	# Rotate an image to match the original's orientation.
-	# @param	orientation	int			Current orientation
-	# @param	image		PIL.image	Image to re-orientate
-	# @return				PIL.image	The image rotated (if needed)
+	# @param		int			orientation	Current orientation
+	# @param		PIL.image	image			Image to re-orientate
+	# @return	PIL.image					The image rotated (if needed)
 	def maintainOrientation (self, orientation, image):
 		# Rotate the picture so that when re-saved
 		# the orientation matches the original (e.g from mobile phones placed on their side).
