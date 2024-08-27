@@ -30,7 +30,6 @@ class HeicToJpeg:
 				self.processImage()
 
 
-
 	# Convert a heic file to a jpeg if not already done so.
 	# @return	void
 	def processImage (self):
@@ -59,8 +58,8 @@ class HeicToJpeg:
 
 
 	# Check the image exif meta data if possible, to assertain the orientation used by the photographer.
-	# @param		PIL.image	image	The image to check
-	# @return	int					The image orientation
+	# @param	PIL.image	image	The image to check
+	# @return	int			The image orientation
 	def checkOrientation (self, image):
 		if hasattr(image, 'getexif'):
 			# Attempt to assertain the key number for 'Orientation' in the meta data tags.
@@ -83,9 +82,9 @@ class HeicToJpeg:
 
 				
 	# Rotate an image to match the original's orientation.
-	# @param		int			orientation	Current orientation
-	# @param		PIL.image	image			Image to re-orientate
-	# @return	PIL.image					The image rotated (if needed)
+	# @param	int		orientation	Current orientation
+	# @param	PIL.image	image		Image to re-orientate
+	# @return	PIL.image			The image rotated (if needed)
 	def maintainOrientation (self, orientation, image):
 		# Rotate the picture so that when re-saved
 		# the orientation matches the original (e.g from mobile phones placed on their side).
